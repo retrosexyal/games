@@ -1,18 +1,16 @@
 import { getDictionary } from '@/lib/i18n/dictionary';
 import GamesList from '@/components/games/GamesList';
+import { LanguageType } from '@/lib/i18n/types';
 
-export function generateMetadata() {
-  const dict = getDictionary('en');
-  const { site } = dict;
 
-  return {
-    title: site.title,
-    description: site.description,
+type Props = {
+  params: {
+    lang: LanguageType;
   };
-}
+};
 
-export default function HomePage() {
-  const dict = getDictionary('en');
+export default function LocalizedHomePage({ params }: Props) {
+  const dict = getDictionary(params.lang);
   const { site } = dict;
 
   return (
@@ -21,7 +19,7 @@ export default function HomePage() {
         {site.title}
       </h1>
 
-      <GamesList dict={dict} />
+      <GamesList dict={dict} lang={params.lang} />
     </main>
   );
 }
