@@ -1,40 +1,48 @@
-'use client';
+"use client";
 
-import type { RefObject } from 'react';
-import { DirectionType } from '../types';
-import { changeDirectionCore } from '../core/inputCore';
+import type { RefObject } from "react";
+import { DirectionType } from "../types";
+import { changeDirectionCore } from "../core/inputCore";
 
 type ControlsProps = {
   directionRef: RefObject<DirectionType>;
+  isRunning: boolean;
+  startGame: () => void;
 };
 
-export default function Controls({ directionRef }: ControlsProps) {
+export default function Controls({
+  directionRef,
+  startGame,
+  isRunning,
+}: ControlsProps) {
+  const handleDirection = (control: DirectionType) => () => {
+    changeDirectionCore(directionRef, control);
+
+    if (!isRunning) {
+      startGame();
+    }
+  };
+
   return (
     <div className="flex flex-col items-center gap-3 select-none md:hidden">
       <button
         className="control-btn"
-        onClick={() =>
-          changeDirectionCore(directionRef, DirectionType.Up)
-        }
+        onClick={handleDirection(DirectionType.Up)}
       >
         ⬆️
       </button>
 
-      <div className="flex gap-3">
+      <div className="flex gap-20">
         <button
           className="control-btn"
-          onClick={() =>
-            changeDirectionCore(directionRef, DirectionType.Left)
-          }
+          onClick={handleDirection(DirectionType.Left)}
         >
           ⬅️
         </button>
 
         <button
           className="control-btn"
-          onClick={() =>
-            changeDirectionCore(directionRef, DirectionType.Right)
-          }
+          onClick={handleDirection(DirectionType.Right)}
         >
           ➡️
         </button>
@@ -42,9 +50,7 @@ export default function Controls({ directionRef }: ControlsProps) {
 
       <button
         className="control-btn"
-        onClick={() =>
-          changeDirectionCore(directionRef, DirectionType.Down)
-        }
+        onClick={handleDirection(DirectionType.Down)}
       >
         ⬇️
       </button>

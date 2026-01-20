@@ -59,7 +59,11 @@ export default function SnakeGame({ dict }: SnakeGameProps) {
         className="border rounded bg-white touch-none"
       />
 
-      <Controls directionRef={directionRef} />
+      <Controls
+        directionRef={directionRef}
+        isRunning={isRunning}
+        startGame={startGame}
+      />
     </div>
   );
 }
