@@ -1,17 +1,13 @@
-import { RefObject } from 'react';
+import type { RefObject } from 'react';
 import type { DirectionType, SnakeStateType } from '../types';
 
-export type StartGameCoreParamsType = {
-  setState: React.Dispatch<React.SetStateAction<SnakeStateType>>;
-  setIsRunning: (value: boolean) => void;
+export type GameLoopRefsType = {
   directionRef: RefObject<DirectionType>;
-  intervalRef: RefObject<number | null>;
-  tick: () => void;
-  speed: number;
-  initialState: SnakeStateType;
+  frameRef: RefObject<number | null>;
 };
 
-export type StopGameCoreParamsType = {
-  intervalRef: RefObject<number | null>;
-  setIsRunning: (value: boolean) => void;
+export type GameTickResultType = {
+  nextState: SnakeStateType;
+  didEatFood: boolean;
+  isGameOver: boolean;
 };

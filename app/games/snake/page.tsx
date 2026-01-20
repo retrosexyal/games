@@ -15,10 +15,10 @@ export default function SnakePage() {
 
   return (
     <main className="p-6 max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4">{dict.snake.title}</h1>
-
+      <h1 className="text-3xl font-bold mb-4 text-center">
+        {dict.snake.title}
+      </h1>
       <SnakeGame dict={dict} />
-
       <p className="mt-6 text-gray-600">{dict.snake.description}</p>
     </main>
   );

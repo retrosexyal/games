@@ -24,3 +24,17 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+.control-btn {
+  width: 64px;
+  height: 64px;
+  font-size: 28px;
+  border-radius: 12px;
+  background: #e5e7eb;
+  touch-action: manipulation;
+}
+
+.control-btn:active {
+  background: #d1d5db;
+}
